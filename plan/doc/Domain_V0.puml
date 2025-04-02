@@ -1,0 +1,45 @@
+@startuml
+
+object User
+object Register
+object Login
+object Welcome
+object Search
+object Recommended
+object Continue
+object WatchLater
+object Media
+object Movies
+object Series
+object Season
+object Episode
+object PlayMedia
+object LogOut
+object Settings
+object SwitchUser
+User --> Register
+User --> Login
+Register --> Login
+Login --> Welcome
+Welcome --> Search
+Welcome --> Recommended
+Welcome --> WatchLater
+Welcome --> Continue
+Search --> Media
+Recommended --> Media
+WatchLater  --> Media
+Continue --> Media
+Media --> Movies
+Movies --> PlayMedia
+Media --> Series
+Series --> Season
+Season --> Episode
+Episode --> PlayMedia
+PlayMedia --> Welcome
+Welcome --> Settings
+Settings --> LogOut
+Settings --> SwitchUser
+SwitchUser --> Login
+
+
+@enduml
