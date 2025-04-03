@@ -1,21 +1,37 @@
-
+import java.util.ArrayList;
 
 public class RegisterUser {
     private String username;
     private String password;
-
+    private ArrayList<String> existingUser;
     RegisterUser(){
 
     }
     private void CreateUser(){
-        String PotentialUsername = promptText("Please select a username");
+        String potentialUsername = promptText("Please select a username");
 
-        if (PotentialUsername != existingUser) {
+        if (potentialUsername != existingUser) {
+            potentialUsername = this.username;
             createPassword();
-        } else CreateUser();
+        } else {
+            System.out.println("Username is already taken..." + "\n" + "Try again");
+            CreateUser();
         }
 
+    }
+
+    private String createPassword() {
+        String password = promptText("Please select a password");
+        Stirng confirmPassword = promptText("Confirm the password");
+        
+        if (!password.equals(confirmPassword)) {
+            System.out.println("Don't match...");
+            createPassword();
+        }
+        return password;
+    }
 
 }
+
 
 
