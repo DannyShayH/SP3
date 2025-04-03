@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+
+@enduml
+
+@startuml
+@startuml
+class Main
+class User
+class Register
+class Login
+class Welcome
+class Search
+class Recomended
+class Continue
+class WatchLater
+abstract class  Media
+class Movies
+class Series
+class Season
+class Episode
+class PlayMedia
+class LogOut
+class Settings
+class SwitchUser
+Main --> Chill
+Chill --> User
+User --> Register
+User --> Login
+Register --> Login
+Login --> Welcome
+Welcome --> Search
+Welcome --> Recomended
+Welcome --> WatchLater
+Welcome --> Continue
+Search --> Media
+Recomended --> Media
+WatchLater  --> Media
+Continue --> Media
+Media --> Movies
+Movies --> PlayMedia
+Media --> Series
+Series --> Season
+Season --> Episode
+Episode --> PlayMedia
+PlayMedia --> Welcome
+Welcome --> Settings
+Settings --> LogOut
+Settings --> SwitchUser
+SwitchUser --> Login
+
+class Chill{
+-String Name
+-ArrayList <User> users
+
+}
+class Series{
+Season();
+
+}
+@enduml
+@enduml
