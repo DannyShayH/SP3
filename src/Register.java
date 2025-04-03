@@ -4,7 +4,8 @@ public class Register {
     private String username;
     private String password;
     private ArrayList<String> existingUser;
-    Register(){
+
+    public Register(){
 
     }
     private void CreateUser(){
