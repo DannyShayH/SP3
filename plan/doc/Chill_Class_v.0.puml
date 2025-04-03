@@ -1,56 +1,145 @@
 @startuml
+'https://plantuml.com/class-diagram
 class Main
-class User
 class Register
 class Login
-class Welcome
+class MainMenu
 class Search
-class Recomended
+class Recommended
 class Continue
 abstract class  Media
 class WatchLater
 class Movies
 class Series
-class Season
-class Episode
-class PlayMedia
 class LogOut
 class Settings
-class SwitchUser
-Main --> Chill
-Chill --> User
-User --> Register
-User --> Login
-Register --> Login
-Login --> Welcome
-Welcome --> Search
-Welcome --> Recomended
-Welcome --> WatchLater
-Welcome --> Continue
-Search --> Media
-Recomended --> Media
-WatchLater  --> Media
-Continue --> Media
-Media --> Movies
-Movies --> PlayMedia
-Media --> Series
-Series --> Season
-Season --> Episode
-Episode --> PlayMedia
-PlayMedia --> Welcome
-Welcome --> Settings
-Settings --> LogOut
-Settings --> SwitchUser
-SwitchUser --> Login
+class User
+Login*-- User
+Chill *-- Register
+Chill *-- Login
+Register *-- Login
 
+MainMenu *-- Search
+MainMenu *-- Recommended
+MainMenu *-- WatchLater
+MainMenu *-- Continue
+Search *-- Media
+Recommended *-- Media
+WatchLater  *-- Media
+Continue *-- Media
+Media <|-- Movies
+Media <|--Series
+MainMenu *-- Settings
+Settings *-- LogOut
+Settings *-- Login
+Main --* Chill
 class Chill{
--String Name
--ArrayList <User> users
+#String Name
 
+}
+abstract class Media{
+-String genre
+-String title
+-double rating
+#findMedia()
+#playMedia()
+#addToWatchLater()
+#addToSeen()
 }
 class Series{
-Season();
+-Int episode
+-int season
+#playMedia()
+-selectEpisode()
+-addToWatchLater()
+-addToSeen()
+}
+class Movies{
+- String title
+# playMedia()
+- addToWatchLater()
+- addToSeen()
+}
+
+class User{
+- String username
+getUsername()
+setUsername()
+FileReader()
 
 }
-@enduml
+class MainMenu {
+-PromptChoice()
+}
+class Search{
+-SearchForMedia(Name,Genre,Rating)
+}
+class Recommended {
+- Array[String] moviesBeingShown Array [5]
+-ShowRandomMovie()
+}
+
+class Register{
+-userName
+-password
+
+-createUser()
+-PromptTextUserName(username)
+-PromptTextPassword(password)
+}
+class Continue{
+-ArrayList<String> moviesSeen
+-ArrayList<String> CurrentlyWatching
+
+}
+class WatchLater{
+-ArrayList<String> WantToWatchLater
++AddToWatchLater()
+}
+
+class LogOut{
+endSession()
+}
+class Chill{
+-displayMessage()
+-promptChoice()
+}
+
+
+
+
+
+class Login{
+-username
+-password
+-checkLogin(username,password)
+
+}
+
+class Settings{
+-setUsername()
+-promptChoice()
+-swtichUser()
+}
+
+
+package "util"{
+class TextUI{
+- Scanner scan
++ boolean promptBinary(String msg)
++ String promptText(String msg)
++ int promptNumeric(String msg)
++ ArrayList<String> promptChoice(ArrayList<String> options, int limit, String msg)
++ void displayMessage(String msg)
++ void displayList(ArrayList<String> list, String msg)
+}
+class FileIO{
++ void saveData(ArrayList<String> data, String path, String header)
++ ArrayList<String> readData(String path)
++ String[] readData(String path, int length)
+}
+}
+Chill -right-* "util"
+User -down-* MainMenu
+
 @enduml
