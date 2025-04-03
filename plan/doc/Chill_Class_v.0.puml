@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
+
 class Main
 class Register
 class Login
@@ -80,8 +81,8 @@ class Recommended {
 }
 
 class Register{
--userName
--password
+-String userName
+-String password
 
 -createUser()
 -PromptTextUserName(username)
@@ -110,8 +111,8 @@ class Chill{
 
 
 class Login{
--username
--password
+-String username
+-String password
 -checkLogin(username,password)
 
 }
