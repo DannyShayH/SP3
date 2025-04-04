@@ -75,12 +75,12 @@ class MainMenu {
 }
 class Search{
 -SearchForMedia(Name,Genre,Rating)
+-aphabetical order();
 }
 class Recommended {
 - Array[String] moviesBeingShown Array [5]
 -ShowRandomMovie()
 }
-class alphabetical_order
 class Register{
 -String userName
 -String password
@@ -121,7 +121,7 @@ class Login{
 class Settings{
 -setUsername()
 -promptChoice()
--swtichUser()
+-switchUser()
 }
 
 

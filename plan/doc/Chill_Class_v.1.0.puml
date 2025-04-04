@@ -1,0 +1,99 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Chill *-- User
+MainMenu*-- Media
+Media <|-- Movies
+Media <|--Series
+MainMenu *-- Settings
+
+Main --* Chill
+class Chill{
+-TextUI ui
+-FileIO io
+Chill(String name)
+#String name
+runLoginSequence()
+goToMain()
+runStream()
+}
+class Main{
+Chill()
+}
+abstract class Media{
++public Media()
+# abstract showMediaInfo()
+-String genre
+-String title
+-double rating
+#findMedia()
+#playMedia()
+#addToSeen()
+}
+class Series{
+-Int episode
+-int season
+#showMediaInfo()
+#playMedia()
+-selectSeason()
+-selectEpisode(int season)
+-addToSeen()
+}
+class Movies{
+- String title
+# showMediaInfo()
+# playMedia()
+- addToSeen()
+}
+
+class User{
++User(String username, String password )
+- String username
+-String password
++getUsername()
++setUsername()
+-readUserFiles()
++AddToWatchLater()
+
+}
+class MainMenu {
++MainMenu()
++SearchForMedia(Name,Genre,Rating)
+-String userName
++alphabeticalOrder();
++chooseOption(int input)
++ Array[String] recommendedMoviesBeingShown Array [5]
++ShowRandomMovie()
++ArrayList<String> moviesSeen
++ArrayList<String> CurrentlyWatching
+}
+
+
+class Settings{
+-setUsername()
+-promptChoice()
+-switchUser()
+-endSession()
+}
+
+
+package "util"{
+class TextUI{
+- Scanner scan
++ boolean promptBinary(String msg)
++ String promptText(String msg)
++ int promptNumeric(String msg)
++ ArrayList<String> promptChoice(ArrayList<String> options, int limit, String msg)
++ void displayMessage(String msg)
++ void displayList(ArrayList<String> list, String msg)
+}
+class FileIO{
++ void saveData(ArrayList<String> data, String path, String header)
++ ArrayList<String> readData(String path)
++ String[] readData(String path, int length)
+}
+}
+Chill -right-* "util"
+User *-down- MainMenu
+
+@enduml
