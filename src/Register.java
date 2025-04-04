@@ -22,10 +22,10 @@ public class Register {
 
     private String createPassword() {
         String password = promptText("Please select a password");
-        Stirng confirmPassword = promptText("Confirm the password");
+        String confirmPassword = promptText("Confirm the password");
 
         if (!password.equals(confirmPassword)) {
-            System.out.println("Don't match...");
+            System.err.println("Don't match...");
             createPassword();
         }
         return password;

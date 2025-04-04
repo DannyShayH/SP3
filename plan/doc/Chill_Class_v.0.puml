@@ -51,7 +51,8 @@ class Series{
 -Int episode
 -int season
 #playMedia()
--selectEpisode()
+-selectSeason()
+-selectEpisode(int season)
 -addToWatchLater()
 -addToSeen()
 }
@@ -79,7 +80,7 @@ class Recommended {
 - Array[String] moviesBeingShown Array [5]
 -ShowRandomMovie()
 }
-
+class alphabetical_order
 class Register{
 -String userName
 -String password
