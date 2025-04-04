@@ -6,17 +6,21 @@ MainMenu*-- Media
 Media <|-- Movies
 Media <|--Series
 MainMenu *-- Settings
-
 Main --* Chill
+
 class Chill{
+-String username
+-String password
+-int age
 -TextUI ui
 -FileIO io
-Chill(String name)
+-ArrayList<String> existingUsers
++ Chill(String name)
 #String name
-runLoginSequence()
-createUser()
-goToMain()
-runStream()
++startSequence()
+-createUsername()
+-createPassword()
+-login()
 }
 class Main{
 Chill()

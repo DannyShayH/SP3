@@ -9,10 +9,9 @@ public class User {
     private int age;
     protected ArrayList<Media> userMedia;
 
-    public User(String username, String password, String e_mail, int age) {
+    public User(String username, String password, int age) {
         this.username = username;
         this.password = password;
-        this.e_mail = e_mail;
         this.age = age;
         userMedia = new ArrayList<Media>();
     }

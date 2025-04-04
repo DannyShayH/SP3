@@ -14,7 +14,7 @@ Når vi registrerere en bruger bliver der sendt data til en CSV-fil, der kan vi 
 Brugeren får en velkomsthilsen med eget navn e.g. Welcome [User].
 Brugeren får nogle valgmuligheder for hvad brugeren gerne vil:
 
-Continue
+
 Search
 Recommended
 Watch Later

@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        Chill chill = new Chill();
+        chill.startSequence("Welcome!");
 
-        LoadDataFromFile myLoader = new LoadDataFromFile();
+    }
+
+}
+       /* LoadDataFromFile myLoader = new LoadDataFromFile();
 
         //initier alle brugere
         ArrayList <User> users = new ArrayList<User>();
@@ -18,7 +23,7 @@ public class Main {
         movies = myMovieLoader.loadMedia();
             }
         }
-
+*/
 
 
 
