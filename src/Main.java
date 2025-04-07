@@ -25,7 +25,7 @@ public class Main {
 
         users = myLoader.loadDataFromSource();
 
-        //Initier alle film
+        //Initier alle film.csv
         ArrayList <Movies> movies = new ArrayList<Movies>();
 
         LoadMovies myMovieLoader = new LoadMediaFromFIle();

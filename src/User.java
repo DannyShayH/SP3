@@ -3,7 +3,6 @@ import util.FileIO;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,7 +44,6 @@ public class User {
         try {
             File file = new File("data/allUsers/allUsers.csv");
             FileWriter writer = new FileWriter("data/allUsers/allUsers.csv", true);
-            //PrintWriter writer = new PrintWriter(file);
 
             Scanner scan = new Scanner(file);
 

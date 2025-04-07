@@ -69,7 +69,9 @@ public class Chill {
             System.err.println(("Username does not exist!"));
             login();
         }
-
+        String[] user = io.readUser("data/userData/" + userUsername + ".csv", 3);
+        this.username = user[0];
+        this.password = user[1];
         String tryPassword = ui.promptText("Enter your password");
 
         // Erstat med vores metode til at check password, ved ik om vi fik lavet den
@@ -81,7 +83,7 @@ public class Chill {
         }
     }
     public boolean getPassword(String tryPassword) {
-        if (tryPassword == this.password) {
+        if (tryPassword.equals(this.password)) {
             return true;
         } else {
             return false;
