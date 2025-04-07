@@ -35,13 +35,12 @@ public class Chill {
 
         if (!existingUser.contains(potentialUsername)) {
             this.username = potentialUsername;
-            password = createPassword();
-            this.password = password;
+            this.password = createPassword();
             User user = new User(username,password,age);
             //Lav en konstruktor der laver en ny CSV-fil som er ";" seperaret.
             login();
         } else {
-            System.out.println("Username is already taken..." + "\n" + "Try again");
+            ui.displayMessage("Username is already taken..." + "\n" + "Try again");
             createUsername();
         }
 
@@ -64,31 +63,27 @@ public class Chill {
         String userUsername = ui.promptText("Enter your username");
 
         if (!existingUser.contains((userUsername))) {
+            //Overvej at lave en .err i TextUI
             System.err.println(("Username does not exist!"));
             login();
         }
 
-        String userPassword = ui.promptText("Enter your password");
+        String tryPassword = ui.promptText("Enter your password");
 
         // Erstat med vores metode til at check password, ved ik om vi fik lavet den
-        if (userUsername.equalsIgnoreCase(this.username) && userPassword.equals(this.password)) {
+        if (userUsername.equalsIgnoreCase(this.username) && getPassword(tryPassword)) {
             ui.displayMessage("Welcome " + userUsername + "!");
         } else {
-            ui.displayMessage("Wrong logindata");
-            startSequence("");
+            ui.displayMessage("Wrong login data");
+            login();
+        }
+    }
+    public boolean getPassword(String tryPassword) {
+        if (tryPassword == this.password) {
+            return true;
+        } else {
+            return false;
         }
     }
 
 }
-
-/*
-
-   
-   
-}
-
-
-
-
-
- */

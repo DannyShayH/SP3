@@ -3,9 +3,8 @@ import java.util.ArrayList;
 
 public class User {
 
-   private String username;
+    private String username;
     private String password;
-    private String e_mail;
     private int age;
     protected ArrayList<Media> userMedia;
 
@@ -14,64 +13,16 @@ public class User {
         this.password = password;
         this.age = age;
         userMedia = new ArrayList<Media>();
+        //createUserData();
     }
 
-    public void setMedia(ArrayList <Media> userMedia){
+    public void setMedia(ArrayList<Media> userMedia) {
         this.userMedia = userMedia;
     }
 
-    public boolean getPassword(String tryPassword){
-        if (tryPassword == this.password) {
-            return true;
-        }else{
-            return false;
-        }
+    private void createUserData(String username, String password, int age){
+
     }
-    public Media getFirstMovie(){
-        return userMedia.getFirst();
-    }
+
 
 }
-
-
-/*
-
-import java.util.ArrayList;
-
-public class Register {
-    private String username;
-    private String password;
-    private ArrayList<String> existingUser;
-    Register(){
-
-    }
-    private void CreateUser(){
-        String potentialUsername = promptText("Please select a username");
-
-        if (potentialUsername != existingUser) {
-            potentialUsername = this.username;
-            createPassword();
-        } else {
-            System.out.println("Username is already taken..." + "\n" + "Try again");
-            CreateUser();
-        }
-
-    }
-
-    private String createPassword() {
-        String password = promptText("Please select a password");
-        String confirmPassword = promptText("Confirm the password");
-
-        if (!password.equals(confirmPassword)) {
-            System.err.println("Don't match...");
-            createPassword();
-        }
-        return password;
-    }
-
-}
-
-
-
-
- */
