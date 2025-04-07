@@ -52,7 +52,9 @@ public class User {
 
             }
             writer.write("\n" + username);
+            scan.close();
             writer.close();
+
         } catch (IOException e){
             //Overvej at lave err i TextUI
             System.err.println("FileNotFound: " + e);
