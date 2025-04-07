@@ -7,12 +7,14 @@ public class Chill {
     private String password;
     private int age;
     private ArrayList<String> existingUser;
-    
+
     TextUI ui = new TextUI();
     FileIO io = new FileIO();
+
     //Bliver kaldt fra Main
 
     public void startSequence(String msg){
+        existingUser = io.readData("data/allUsers/allUsers.csv");
         //welcome to site msg Måske hej velkommen til Chill
         ui.displayMessage(msg);
         //Giver to valgmuligheder, hvor brugeren kan svare med en int.
@@ -61,7 +63,7 @@ public class Chill {
     
     private void login() {
         String userUsername = ui.promptText("Enter your username");
-
+       // this.user = io.readData();
         if (!existingUser.contains((userUsername))) {
             //Overvej at lave en .err i TextUI
             System.err.println(("Username does not exist!"));
