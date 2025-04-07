@@ -54,4 +54,23 @@ public class FileIO {
         }
         return data;
     }
+    public String[] readUser(String path, int length) {
+        String[] data = new String[length];
+        File file = new File(path);
+        try {
+            //new scanner created
+            Scanner scan = new Scanner(file);
+            scan.nextLine();//skip header;
+
+         String text = scan.nextLine();
+         String[] splits = text.split(";");
+         data[0] = splits[0];
+         data[1] = splits[1];
+         data[2] = splits[2];
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
+        return data;
+    }
 }

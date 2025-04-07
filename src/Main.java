@@ -1,10 +1,20 @@
+import util.FileIO;
+import util.TextUI;
 import java.util.ArrayList;
+
 
 public class Main {
     public static void main(String[] args) {
         Chill chill = new Chill();
-        chill.startSequence("Welcome!");
+       chill.startSequence("Welcome!");
 
+       /* FileIO io = new FileIO();
+        TextUI ui = new TextUI();
+        String[] test = io.readUser("data/userData/Danny.csv", 3);
+        for(int i = 0; i < 3; i++){
+            ui.displayMessage(test[i]);
+        }
+*/
     }
 
 }
