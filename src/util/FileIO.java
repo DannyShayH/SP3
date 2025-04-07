@@ -54,37 +54,4 @@ public class FileIO {
         }
         return data;
     }
-
-    public void createUser(String username, String password, int age) {
-        try {
-            String finalPath = path + username + ".csv";
-            FileWriter writer = new FileWriter(finalPath);
-            writer.write("username " + "password " + "age " + "\n");
-            writer.write(username + ";" + password + ";" + age);
-            writer.close();
-        } catch (IOException e) {
-            // Overvej at lave en text err i TextUI
-            System.err.println("problem: " + e.getMessage());
-        }
-    }
-
-    public void allUsernames(String username) {
-        try {
-            File file = new File("data/allUsers/allUsers.csv");
-            FileWriter writer = new FileWriter("data/allUsers/allUsers.csv", true);
-            //PrintWriter writer = new PrintWriter(file);
-
-            Scanner scan = new Scanner(file);
-
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-
-            }
-            writer.write("\n" + username + ";");
-            writer.close();
-        } catch (IOException e){
-            //Overvej at lave err i TextUI
-            System.err.println("FileNotFound: " + e);
-        }
-    }
 }
