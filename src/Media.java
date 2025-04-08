@@ -6,14 +6,14 @@ public abstract class Media {
 
     //media info
     String title;
-    int year;
+    String year;
     String genre;
     double rating;
     //user info
     String username;
 
 
-    public Media(String username, String title, double rating, int year, String genre){
+    public Media(String username, String title, double rating, String year, String genre){
         this.title = title;
         this.genre = genre;
         this.rating = rating;
@@ -29,8 +29,27 @@ public abstract class Media {
 
             }
         protected void showMediaInfo(){}
-    protected void addToFavorites(){}
+        protected void addToFavorites(){}
+        public String getTitle() {
+        return title;
+    }
 
+        public String getYear() {
+        return year;
+    }
+
+        public String getGenre() {
+        return genre;
+    }
+
+        @Override
+        public String toString() {
+        return "Media{" +
+                "title='" + title + '\'' +
+                ", genre='" + genre + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
 }
 
 

@@ -8,7 +8,7 @@ public class Movies extends Media{
     Scanner scan = new Scanner(System.in);
 
 
-    public Movies(String username, String title, double rating, int year, String genre) {
+    public Movies(String username, String title, double rating, String year, String genre) {
         super(username,title,rating,year,genre);
     }
 

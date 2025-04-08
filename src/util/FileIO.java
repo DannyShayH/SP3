@@ -73,4 +73,45 @@ public class FileIO {
         }
         return data;
     }
+    public ArrayList<String> allMovies = new ArrayList<>();
+
+    public void allMovies() {
+        File file = new File("data/Media/film.csv");
+
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String movie = scan.nextLine();
+                allMovies.add(movie);
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<String> allSeries = new ArrayList<>();
+
+    public void allSeries() {
+        File file = new File("data/Media/series.csv");
+
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String movie = scan.nextLine();
+                allSeries.add(movie);
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<String> getMovieList() {
+        return allMovies;
+    }
+
+    public ArrayList<String> getSeriesList() {
+        return allSeries;
+    }
 }
