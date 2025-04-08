@@ -24,10 +24,6 @@ public class User {
         allUsernames(username);
     }
 
-    public void setMedia(ArrayList<Media> userMedia) {
-        this.userMedia = userMedia;
-    }
-
     public void createUser(String username, String password, int age) {
         try {
             String finalPath = path + username + ".csv";
