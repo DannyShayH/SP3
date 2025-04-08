@@ -1,4 +1,4 @@
-public class Movies {
+public class Movies extends Media{
 
     String title;
     String genre;
