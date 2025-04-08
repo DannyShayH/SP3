@@ -20,23 +20,24 @@ public class User {
         this.password = password;
         this.age = age;
         userMedia = new ArrayList<Media>();
-        createUser(username, password, age);
-        allUsernames(username);
+
+
     }
 
-    public void createUser(String username, String password, int age) {
+    public void createUser() {
         try {
             String finalPath = path + username + ".csv";
             FileWriter writer = new FileWriter(finalPath);
             writer.write("username " + "password " + "age " + "\n");
-            writer.write(username + ";" + password + ";" + age);
+            writer.write(username + ";" + password + ";" + age+"\n");
+            writer.write("Title " + "isFavourite " + "hasWatched " + "\n");
             writer.close();
         } catch (IOException e) {
             // Overvej at lave en text err i TextUI
             System.err.println("problem: " + e.getMessage());
         }
     }
-    public void allUsernames(String username) {
+    public void allUsernames() {
         try {
             File file = new File("data/allUsers/allUsers.csv");
             FileWriter writer = new FileWriter("data/allUsers/allUsers.csv", true);
@@ -55,6 +56,9 @@ public class User {
             //Overvej at lave err i TextUI
             System.err.println("FileNotFound: " + e);
         }
+    }
+    public  String getUsername(){
+        return this.username;
     }
     }
 

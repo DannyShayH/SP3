@@ -1,2 +1,4 @@
-username password age
-Luke;qwerty;20
+username password age 
+Luke;1234;12
+Title isFavourite hasWatched
+shaw; false; true; 

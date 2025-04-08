@@ -7,6 +7,7 @@ public class Chill {
     private String password;
     private int age;
     private ArrayList<String> existingUser;
+    private String currentUser;
 
     TextUI ui = new TextUI();
     FileIO io = new FileIO();
@@ -40,6 +41,8 @@ public class Chill {
             this.password = createPassword();
             existingUser.add(this.username);
             User user = new User(username,password,age);
+            user.createUser();
+            user.allUsernames();
             //Lav en konstruktor der laver en ny CSV-fil som er ";" seperaret.
             login();
         } else {
@@ -78,6 +81,7 @@ public class Chill {
         // Erstat med vores metode til at check password, ved ik om vi fik lavet den
         if (userUsername.equalsIgnoreCase(this.username) && getPassword(tryPassword)) {
             ui.displayMessage("Welcome " + userUsername + "!");
+            this.currentUser = this.username;
         } else {
             ui.displayMessage("Wrong login data");
             login();
@@ -90,5 +94,6 @@ public class Chill {
             return false;
         }
     }
+
 
 }
