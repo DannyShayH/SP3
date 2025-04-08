@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class TextUI {
     Scanner sc = new Scanner(System.in);
-    public ArrayList<String> promptChoice( ArrayList<String> options, int limit, String msg){
+    public ArrayList<String> promptChoice(ArrayList<String> options, int limit, String msg){
         displayList(options, "");
         ArrayList<String> choices = new ArrayList<>();  //Lave en beholder til at gemme brugerens valg
 
