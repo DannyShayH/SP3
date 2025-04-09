@@ -26,7 +26,6 @@ public abstract class Media {
         public void hasWatched(){
 
             }
-        protected void showMediaInfo(){}
         protected void addToFavorites(){}
         public String getTitle() {
         return title;

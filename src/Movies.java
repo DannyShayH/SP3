@@ -7,7 +7,6 @@ public class Movies extends Media{
     TextUI ui = new TextUI();
     Scanner scan = new Scanner(System.in);
 
-
     public Movies(String title, String rating, String year, String genre) {
         super(title,rating,year,genre);
     }
