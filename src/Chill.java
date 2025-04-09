@@ -95,6 +95,7 @@ public class Chill {
             return false;
         }
     }
-
-
+    public void endSession(){
+        ui.displayMessage("You are now logged out!");
+    }
 }

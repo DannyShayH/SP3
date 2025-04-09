@@ -8,7 +8,7 @@ public class MainMenu {
 
     private static User user;
     private String choice;
-    static TextUI ui = new TextUI();
+    public static TextUI ui = new TextUI();
     private ArrayList<Media> mediaList = new ArrayList<>();
     static FileIO io = new FileIO();
 
@@ -93,7 +93,7 @@ public class MainMenu {
             case 4:
                 break;
             case 5:
-                Settings.switchAccount();
+                Settings.settings();
                 break;
             default:
                 ui.displayMessage("Your input was incorrect, please type a number between 1 and 5");
