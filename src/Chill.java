@@ -86,6 +86,7 @@ public class Chill {
             ui.displayMessage("Wrong login data");
             login();
         }
+        MainMenu.promptChoice();
     }
     public boolean getPassword(String tryPassword) {
         if (tryPassword.equals(this.password)) {

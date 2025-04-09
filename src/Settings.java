@@ -3,8 +3,8 @@ public class Settings {
     public Settings() {
     }
 
-    public void switchAccount() {
+    public static void switchAccount() {
         Chill chill = new Chill();
-        chill.login();
+        chill.startSequence("Welcome");
     }
 }

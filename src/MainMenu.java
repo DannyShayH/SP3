@@ -77,15 +77,38 @@ public class MainMenu {
         ui.displayMessage("4. Continue watching");
         ui.displayMessage("5. Go to settings");
         int choice = ui.promptNumeric("Choose an option to continue (Numeric)");
-        if (choice == 1) {
-            String title = ui.promptText("Search for title of media ");
-            String genre = ui.promptText("Search for genre of media ");
-            String year = ui.promptText("Search for year");
+        switch(choice) {
+            case 1:
+                String title = ui.promptText("Search for title of media ");
+                String genre = ui.promptText("Search for genre of media ");
+                String year = ui.promptText("Search for year");
 
-            MainMenu menu = new MainMenu();
-            menu.search(title, genre, year);
+                MainMenu menu = new MainMenu();
+                menu.search(title, genre, year);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                Settings.switchAccount();
+                break;
+            default:
+                ui.displayMessage("Your input was incorrect, please type a number between 1 and 5");
+                promptChoice();
         }
-    }
+
+
+
+          /*  ArrayList <Media> found = menu.search2(title, genre,year);
+           if (found.isEmpty()){
+                ui.displayMessage("No media found matching your search criteria.");*/
+            //promptChoice();
+
+        }
+
 
     public void search(String name, String genre, String year) {
         boolean found = false;
@@ -103,10 +126,27 @@ public class MainMenu {
 
         if (!found) {
             System.out.println("No media found matching your search criteria.");
+            promptChoice();
         }
     }
 
-    public static void main(String[] args) {
-        promptChoice();
-    }
+   /* public ArrayList<Media> search2(String name, String genre, String year) {
+        ArrayList <Media> foundList = new ArrayList<>();
+        boolean found = false;
+        for (Media media : mediaList) {
+            boolean titleMatch = name.isEmpty() || media.getTitle().toLowerCase().contains(name.toLowerCase());
+            boolean genreMatch = genre.isEmpty() || media.getGenre().toLowerCase().contains(genre.toLowerCase());
+            boolean yearMatch = year.isEmpty() || media.getYear().equals(year);
+
+            if (titleMatch && genreMatch && yearMatch) {
+                foundList.add(media);
+                found = true;
+            }
+        }
+        return foundList;
+       /* if (!found) {
+            System.out.println("No media found matching your search criteria.");
+        }*/
+
+
 }
