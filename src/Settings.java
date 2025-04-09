@@ -10,8 +10,8 @@ public class Settings {
     }
 
     public static void settings(){
-        ui.displayMessage("1. log out");
-        ui.displayMessage("2. Switch user");
+        ui.displayMessage("1. Switch User");
+        ui.displayMessage("2. Log Out");
         int choice = ui.promptNumeric("Choose an option to continue (Numeric)");
         switch(choice) {
             case 1:
