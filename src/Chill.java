@@ -38,6 +38,7 @@ public class Chill {
         if (!existingUser.contains(potentialUsername)) {
             this.username = potentialUsername;
             this.password = createPassword();
+            existingUser.add(this.username);
             User user = new User(username,password,age);
             //Lav en konstruktor der laver en ny CSV-fil som er ";" seperaret.
             login();
