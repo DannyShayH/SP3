@@ -10,8 +10,8 @@ int season;
     Scanner scan = new Scanner(System.in);
 
 
-    public Series (String username, String title, double rating, String year, String genre, int season, int episode) {
-        super(username,title,rating,year,genre);
+    public Series (String title, String rating, String year, String genre) {
+        super(title,rating,year,genre);
         this.episode = episode;
         this.season = season;
 

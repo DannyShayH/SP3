@@ -65,7 +65,7 @@ public class Chill {
     }
     
     
-    private void login() {
+    public void login() {
         String userUsername = ui.promptText("Enter your username");
        // this.user = io.readData();
         if (!existingUser.contains((userUsername))) {

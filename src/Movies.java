@@ -8,8 +8,8 @@ public class Movies extends Media{
     Scanner scan = new Scanner(System.in);
 
 
-    public Movies(String username, String title, double rating, String year, String genre) {
-        super(username,title,rating,year,genre);
+    public Movies(String title, String rating, String year, String genre) {
+        super(title,rating,year,genre);
     }
 
 
@@ -18,7 +18,7 @@ public class Movies extends Media{
     public void hasWatched() {
         try {
             String path = "data/userData/";
-            String finalPath = path + username + ".csv";
+            String finalPath = path + User.getUsername() + ".csv";
             FileWriter writer = new FileWriter(finalPath, true);
             Scanner scan = new Scanner(finalPath);
             while (scan.hasNextLine()) {
@@ -35,7 +35,7 @@ public class Movies extends Media{
     }
         @Override
         public void playMedia(String title){
-        ui.displayMessage(username + " is now watching: " + title);
+        ui.displayMessage(User.getUsername() + " is now watching: " + title);
         hasWatched();
         ui.displayMessage("the movie:" + title + " has been added to your has watched");
         }

@@ -8,17 +8,15 @@ public abstract class Media {
     String title;
     String year;
     String genre;
-    double rating;
+    String rating;
     //user info
-    String username;
 
 
-    public Media(String username, String title, double rating, String year, String genre){
+    public Media(String title, String rating, String year, String genre){
         this.title = title;
         this.genre = genre;
         this.rating = rating;
         this.year = year;
-        this.username = username;
         }
 
         protected void playMedia(String title){

@@ -23,14 +23,16 @@ public class MainMenu {
             try {
                 String[] parts = movieData.split(";");
 
-                if (parts.length >= 3) {
+                if (parts.length >= 4) {
                     String title = parts[0].trim();
                     String year = parts[1].trim();
                     String genre = parts[2].trim();
+                    String rating = parts[3].trim();
 
-                    String key = title + ":" + year;
+
+                    String key = title + ": " + year;
                     if (!addedTitles.contains(key)) {
-                        mediaList.add(new Media(title, genre, year));
+                        mediaList.add(new Series(title, rating, year, genre));
                         addedTitles.add(key);
                     }
                 }
@@ -44,18 +46,16 @@ public class MainMenu {
             try {
                 String[] parts = seriesData.split(";");
 
-                if (parts.length < 3) {
-                    parts = seriesData.split(",");
-                }
 
-                if (parts.length >= 3) {
+                if (parts.length >= 4) {
                     String title = parts[0].trim();
                     String year = parts[1].trim();
                     String genre = parts[2].trim();
+                    String rating = parts[3].trim();
 
                     String key = title + ":" + year;
                     if (!addedTitles.contains(key)) {
-                        mediaList.add(new Movies(username, title, genre, year, "genre"));
+                        mediaList.add(new Movies(title, rating, year, genre));
                         addedTitles.add(key);
                     }
                 }
@@ -67,7 +67,7 @@ public class MainMenu {
     }
 
     public void choose(String choice) {
-        System.out.println("You choose choice: " + choice);
+        System.out.println("You chose: " + choice);
     }
 
     public static void promptChoice() {
@@ -76,7 +76,6 @@ public class MainMenu {
         ui.displayMessage("3. Watch Later");
         ui.displayMessage("4. Continue watching");
         ui.displayMessage("5. Go to settings");
-        System.out.println("Hello, " + (user != null ? user : "Guest") + "!");
         int choice = ui.promptNumeric("Choose an option to continue (Numeric)");
         if (choice == 1) {
             String title = ui.promptText("Search for title of media ");
