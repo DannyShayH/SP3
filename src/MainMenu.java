@@ -55,7 +55,7 @@ public class MainMenu {
 
                     String key = title + ":" + year;
                     if (!addedTitles.contains(key)) {
-                        mediaList.add(new Media(title, genre, year));
+                        mediaList.add(new Movies(username, title, genre, year, "genre"));
                         addedTitles.add(key);
                     }
                 }
