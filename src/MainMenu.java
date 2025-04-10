@@ -67,6 +67,15 @@ public class MainMenu {
         }
     }
 
+    public void converToMovie(String media){
+        String[] movie = media.split(";");
+        String title = movie[0];
+        String rating = movie[1];
+        String year = movie[2];
+        String genre = movie[3];
+        Media movieData = new Movies(title,rating, year, genre);
+    }
+
     public void choose(String choice) {
         System.out.println("You chose: " + choice);
     }
@@ -85,9 +94,9 @@ public class MainMenu {
                 String genre = ui.promptText("Search for genre of media ");
                 String year = ui.promptText("Search for year");
 
-
-
                  this.options = menu.search(title, genre, year);
+                String moviePicked = menu.handleChoices(options);
+                converToMovie(moviePicked);
 
                 break;
             case 2:
@@ -103,7 +112,7 @@ public class MainMenu {
                 ui.displayMessage("Your input was incorrect, please type a number between 1 and 5");
                 promptChoice();
         }
-        System.out.println(menu.handleChoices(options));
+
 
 
     }
