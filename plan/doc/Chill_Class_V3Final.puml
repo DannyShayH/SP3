@@ -1,0 +1,160 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Chill *-- User
+MainMenu*-- Media
+Media <|-- Movies
+Media <|--Series
+MainMenu *-- Settings
+Main --* Chill
+
+class Chill{
+'Attributes
+-String username
+-String password
+-int age
+-String currentUser;
+-ArrayList<String> existingUsers
++ Chill(String name)
+-TextUI ui
+-FileIO io
+'Methods
++startSequence()
++getPassword()
+-createUsername()
+-createPassword()
+-login()
+}
+class Main{
+Chill()
+}
+abstract class Media{
+'Attributes
+-String title
+-String genre
+-String rating
+- String year
+'Methods
++action()
++hasWatched()
++getTitle()
++getGenre()
++getYear()
++getRating()
++toString()
++public Media()
+# abstract showMediaInfo()
+#findMedia()
+#playMedia()
+#addToSeen()
+}
+class Series{
+'Attributes
+-Int episode
+-int season
+'Methods
+#showMediaInfo()
+#playMedia()
+-selectSeason()
+-selectEpisode(int season)
+-addToSeen()
+}
+class Movies{
+'Attributes
+- String title
+- String currentUser
+- String finalPath
+'Methods
++Movies(title, year, genre, rating)
++Movies(title, year, genre, rating, currentUser)
++action()
++hasWatched()
++returnExit()
++ playMedia()
++addFavorite()
+}
+
+class User{
+'Attributes
++User(String username, String password )
+- String username
+-String password
+-String path
+-int age
+#ArrayList<Media> userMedia
+-FileIO io
+'Methods
++getUsername()
++setUsername()
+-readUserFiles()
++AddToWatchLater()
++setMedia()
++createUser()
++allUsernames()
+}
+class MainMenu {
+'Attributes
+-private String Choice
+-ArrayList<Media> mediaList
+-ArrayList<String> options
+-ArrayList<String> finalList
+-String currentUser
+-Random randomNum
+-String finalPath
+-String userName
+
+'Methods
++MainMenu()
++convertToMovie(Media)
++promptChoice()
++search(Name,Genre,Rating)
++chooseOption(int input)
++handleChoice()
++recommended()
++favorites()
++favoritesCSV()
++watchedCSV()
++findAlreadySeen()
+
+}
+
+
+class Settings{
+'Methods
+-setUsername()
+-promptChoice()
+-switchUser()
+-endSession()
+}
+
+
+package "util"{
+class TextUI{
+'Attributes
+- Scanner scan
+'Methods
++ boolean promptBinary(String msg)
++ String promptText(String msg)
++ int promptNumeric(String msg)
++ ArrayList<String> promptChoice(ArrayList<String> options, int limit, String msg)
++ void displayMessage(String msg)
++ void displayList(ArrayList<String> list, String msg)
+}
+class FileIO{
+'Attributes
++ void saveData(ArrayList<String> data, String path, String header)
++ ArrayList<String> readData(String path)
++ String[] readData(String path, int length)
++ String path
+'Methods
++readUser()
++allMovies()
++allSeries()
++getMovieList()
++getSeriesList()
+}
+}
+Chill -right-* "util"
+User *-down- MainMenu
+
+@enduml
