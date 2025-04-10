@@ -38,13 +38,16 @@ public abstract class Media {
         public String getGenre() {
         return genre;
     }
-
+        public String getRating() {
+        return rating;
+    }
         @Override
         public String toString() {
         return "Media{" +
                 "title='" + title + '\'' +
                 ", genre='" + genre + '\'' +
                 ", year='" + year + '\'' +
+                ", rating='" + rating + '\'' +
                 '}';
     }
 }

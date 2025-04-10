@@ -33,7 +33,7 @@ public class MainMenu {
 
                     String key = title + ": " + year;
                     if (!addedTitles.contains(key)) {
-                        mediaList.add(new Series(title, rating, year, genre));
+                        mediaList.add(new Movies(title, year,genre, rating));
                         addedTitles.add(key);
                     }
                 }
@@ -56,7 +56,7 @@ public class MainMenu {
 
                     String key = title + ":" + year;
                     if (!addedTitles.contains(key)) {
-                        mediaList.add(new Movies(title, rating, year, genre));
+                        mediaList.add(new Series(title, rating, year, genre));
                         addedTitles.add(key);
                     }
                 }
@@ -67,13 +67,14 @@ public class MainMenu {
         }
     }
 
-    public void converToMovie(String media){
+    public Movies converToMovie(String media){
         String[] movie = media.split(";");
         String title = movie[0];
-        String rating = movie[1];
+        String genre = movie[1];
         String year = movie[2];
-        String genre = movie[3];
-        Media movieData = new Movies(title,rating, year, genre);
+       // String rating = movie[3];
+        Movies movieData = new Movies(title, genre, year, "Test", currentUser);
+        return movieData;
     }
 
     public void choose(String choice) {
@@ -90,13 +91,15 @@ public class MainMenu {
         int choice = ui.promptNumeric("Choose an option to continue (Numeric)");
         switch(choice) {
             case 1:
+                System.out.println(mediaList);
                 String title = ui.promptText("Search for title of media ");
                 String genre = ui.promptText("Search for genre of media ");
                 String year = ui.promptText("Search for year");
 
                  this.options = menu.search(title, genre, year);
                 String moviePicked = menu.handleChoices(options);
-                converToMovie(moviePicked);
+                Media movie = converToMovie(moviePicked);
+                movie.hasWatched();
 
                 break;
             case 2:
@@ -136,8 +139,8 @@ public class MainMenu {
 
             if (titleMatch && genreMatch && yearMatch) {
                 counter++;
-               System.out.printf(counter + ". Title: %s | Genre: %s | Year: %s%n",
-                        media.getTitle(), media.getGenre(), media.getYear());
+               System.out.printf(counter + ". Title: %s | Genre: %s | Year: %s | Rating: %s%n",
+                        media.getTitle(), media.getGenre(), media.getYear(), media.getRating());
 
                 String finalThread = media.getTitle() + ";" + media.getGenre() + ";" + media.getYear();
                 options.add(finalThread);

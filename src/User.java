@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class User {
     String path = "data/userData/";
-    private static String username;
+    private String username;
     private String password;
     private int age;
     protected ArrayList<Media> userMedia;
@@ -57,7 +57,7 @@ public class User {
             System.err.println("FileNotFound: " + e);
         }
     }
-    public static String getUsername(){
+    public String getUsername(){
         return username;
     }
     }

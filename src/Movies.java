@@ -6,17 +6,16 @@ import util.TextUI;
 public class Movies extends Media{
     TextUI ui = new TextUI();
     Scanner scan = new Scanner(System.in);
-
-    public Movies(String title, String rating, String year, String genre) {
+    public Movies(String title, String year, String genre, String rating,String currentUser) {
         super(title,rating,year,genre);
     }
-
 
 
     @Override
     public void hasWatched() {
         try {
             String path = "data/userData/";
+            System.out.println(User.getUsername());
             String finalPath = path + User.getUsername() + ".csv";
             FileWriter writer = new FileWriter(finalPath, true);
             Scanner scan = new Scanner(finalPath);
