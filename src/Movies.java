@@ -22,14 +22,12 @@ public class Movies extends Media{
     }
     @Override
     public void action(){
-        ui.displayMessage("1: watch movie"+ "\n" + "2: add to favorite" + "\n" + "3: Return to main menu");
+        ui.displayMessage("1: watch movie"+ "\n" + "2: Return to main menu");
         int input = ui.promptNumeric("What action would you like to take?");
         if(input == 1){
          ui.displayMessage("You are now watching " + title);
          playMedia(title);
-        }else if(input == 2) {
-            addToFavorites();
-        }else if(input ==3){
+        }else if(input == 2){
             ui.displayMessage("You have returned to main menu");
             MainMenu menu = new MainMenu();
             menu.promptChoice();
@@ -86,12 +84,16 @@ public class Movies extends Media{
         returnExit();
     }
     public void returnExit(){
-        int input = ui.promptNumeric("1: Go to main menu" + "\n" + "2: End program");
+        int input = ui.promptNumeric("1: Go to main menu" + "\n" + "2: End program" + "\n" + "3: Add to favorite");
         if(input == 1){
             MainMenu menu = new MainMenu();
             menu.promptChoice();
-        }else if(input ==2){
+        }else if(input == 2) {
             ui.displayMessage("Goodbye");
+        }else if(input == 3){
+            ui.displayMessage(title + " has now been added to favorites");
+            MainMenu menu = new MainMenu();
+            menu.promptChoice();
         }else{
             ui.displayMessage("Please enter a valid number");
             returnExit();
@@ -101,6 +103,8 @@ public class Movies extends Media{
 
     @Override
     public void addToFavorites(){
+       // MainMenu menu = new MainMenu();
+        //menu.addToFavorites(title);
         try {
             String path = "data/userData/";
             String username = User.getUsername();
@@ -140,5 +144,7 @@ public class Movies extends Media{
         } catch (IOException e) {
             System.err.println("Problem updating favorites: " + e.getMessage());
         }
+    MainMenu menu5 = new MainMenu();
+        menu5.promptChoice();
     }
 }
