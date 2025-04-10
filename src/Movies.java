@@ -2,61 +2,114 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import util.TextUI;
+import java.io.File;
 
 public class Movies extends Media{
     TextUI ui = new TextUI();
     Scanner scan = new Scanner(System.in);
-
-    public Movies(String title, String rating, String year, String genre) {
-        super(title,rating,year,genre);
+    private String currentUser;
+    
+    public Movies(String title, String year, String genre, String rating) {
+        super(title, rating, year, genre);
+        this.currentUser = User.getUsername();
     }
-
-
+    
+    public Movies(String title, String year, String genre, String rating, String currentUser) {
+        super(title, rating, year, genre);
+        this.currentUser = currentUser;
+    }
 
     @Override
     public void hasWatched() {
         try {
             String path = "data/userData/";
-            String finalPath = path + User.getUsername() + ".csv";
-            FileWriter writer = new FileWriter(finalPath, true);
-            Scanner scan = new Scanner(finalPath);
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
+            String username = User.getUsername();
+
+            
+            String finalPath = path + username + ".csv";
+            
+            File userFile = new File(finalPath);
+//            if (!userFile.exists()) {
+//                ui.displayMessage("Error: User data file not found: " + finalPath);
+//                return;
+//            }
+        
+            boolean alreadyWatched = false;
+            Scanner scanner = new Scanner(userFile);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.contains(title) && line.contains("true")) {
+                    alreadyWatched = true;
+                    break;
+                }
             }
-
-
-            writer.write("\n" + title + "; " + "false;" + " true; ");
-            writer.close();
+            scanner.close();
+        
+            if (!alreadyWatched) {
+                FileWriter writer = new FileWriter(finalPath, true);
+                writer.write("\n" + title + "; " + "false;" + " true; ");
+                writer.close();
+                ui.displayMessage("The movie: " + title + " has been added to your watched list");
+            } else {
+                ui.displayMessage("The movie: " + title + " is already in your watched list");
+            }
         } catch (IOException e) {
-            // Overvej at lave en text err i TextUI
-            System.err.println("problem: " + e.getMessage());
-         }
+            System.err.println("Problem updating watched list: " + e.getMessage());
+        }
     }
-        @Override
-        public void playMedia(String title){
-        ui.displayMessage(User.getUsername() + " is now watching: " + title);
+    
+    @Override
+    public void playMedia(String title){
+        String username = User.getUsername();
+        if (username == null || username.isEmpty()) {
+            ui.displayMessage("Error: No user is currently logged in");
+            return;
+        }
+        
+        ui.displayMessage(username + " is now watching: " + title);
         hasWatched();
-        ui.displayMessage("the movie:" + title + " has been added to your has watched");
-        }
+    }
 
-        @Override
+    @Override
     public void addToFavorites(){
-        String[] data = new String[3];
-        String sample = null;
-        while(!sample.contains(title)); {
-            sample = scan.nextLine();
-        }
-        String[] splits = sample.split(";");
-        data[0] = splits [0];
-        data[1] = "true;";
-        data[2] = splits [2];
-        String finalText = data[0]+data[1]+data[2];
-        //writer.write(finaltext);
-        }
+        try {
+            String path = "data/userData/";
+            String username = User.getUsername();
+            
 
+            
+            String finalPath = path + username + ".csv";
+            
+            File userFile = new File(finalPath);
 
+            Scanner fileScanner = new Scanner(userFile);
+            StringBuilder fileContent = new StringBuilder();
+            boolean foundTitle = false;
+            
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                if (line.contains(title)) {
+                    String[] parts = line.split(";");
+                    if (parts.length >= 3) {
+                        line = title + "; true;" + parts[2] + ";";
+                    }
+                    foundTitle = true;
+                }
+                fileContent.append(line).append("\n");
+            }
+            fileScanner.close();
+            
+            FileWriter writer = new FileWriter(finalPath);
+            writer.write(fileContent.toString());
+            writer.close();
+            
+            if (foundTitle) {
+                ui.displayMessage("Added " + title + " to favorites");
+            } else {
+                ui.displayMessage("Could not find " + title + " in your watched list");
+            }
+        } catch (IOException e) {
+            System.err.println("Problem updating favorites: " + e.getMessage());
+        }
+    }
 }
-
-
-//The Godfather; 1972; Crime, Drama; 9,2;
-

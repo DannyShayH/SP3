@@ -39,7 +39,11 @@ public abstract class Media {
         return genre;
     }
 
-        @Override
+         public String getRating() {
+        return rating;
+    }
+
+    @Override
         public String toString() {
         return "Media{" +
                 "title='" + title + '\'' +

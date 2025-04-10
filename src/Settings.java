@@ -5,8 +5,6 @@ public class Settings {
     static TextUI ui = new TextUI();
 
     public Settings() {
-
-
     }
 
     public static void settings(){
@@ -27,10 +25,13 @@ public class Settings {
     }
 
     public static void switchAccount() {
+        User.setUsername(null);
         Chill chill = new Chill();
         chill.startSequence("Welcome");
    }
+    
     public static void endSession(){
+        User.setUsername(null);
         ui.displayMessage("You are now logged out!");
     }
 }

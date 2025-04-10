@@ -13,7 +13,6 @@ public class Chill {
     FileIO io = new FileIO();
 
     //Bliver kaldt fra Main
-
     public void startSequence(String msg){
         existingUser = io.readData("data/allUsers/allUsers.csv");
         //welcome to site msg Måske hej velkommen til Chill
@@ -28,10 +27,9 @@ public class Chill {
         } else {
             ui.displayMessage("invalid input, please try again");
             startSequence("");
-
         }
-
     }
+    
     private void createUsername(){
         this.age = ui.promptNumeric("Please enter your age");
         String potentialUsername = ui.promptText("Please select a username");
@@ -40,7 +38,7 @@ public class Chill {
             this.username = potentialUsername;
             this.password = createPassword();
             existingUser.add(this.username);
-            User user = new User(username,password,age);
+            User user = new User(username, password, age);
             user.createUser();
             user.allUsernames();
             //Lav en konstruktor der laver en ny CSV-fil som er ";" seperaret.
@@ -49,7 +47,6 @@ public class Chill {
             ui.displayMessage("Username is already taken..." + "\n" + "Try again");
             createUsername();
         }
-
     }
 
     private String createPassword() {
@@ -59,20 +56,23 @@ public class Chill {
         if (!password.equals(confirmPassword)) {
             //Overvej at lave en .err i TextUI
             System.err.println("Don't match...");
-            createPassword();
+            return createPassword();
         }
         return password;
     }
     
-    
     public void login() {
         String userUsername = ui.promptText("Enter your username");
-       // this.user = io.readData();
+        
         if (!existingUser.contains((userUsername))) {
             //Overvej at lave en .err i TextUI
             System.err.println(("Username does not exist!"));
             login();
+            return;
         }
+        
+        User.setUsername(userUsername);
+        
         String[] user = io.readUser("data/userData/" + userUsername + ".csv", 3);
         this.username = user[0];
         this.password = user[1];
@@ -85,11 +85,13 @@ public class Chill {
         } else {
             ui.displayMessage("Wrong login data");
             login();
+            return;
         }
+        
         MainMenu menu = new MainMenu();
         menu.promptChoice();
-
     }
+    
     public boolean getPassword(String tryPassword) {
         if (tryPassword.equals(this.password)) {
             return true;
@@ -97,7 +99,9 @@ public class Chill {
             return false;
         }
     }
+    
     public void endSession(){
         ui.displayMessage("You are now logged out!");
+        User.setUsername(null);
     }
 }
