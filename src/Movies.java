@@ -134,6 +134,7 @@ public class Movies extends Media{
             
             FileWriter writer = new FileWriter(finalPath);
             writer.write(fileContent.toString());
+            //writer.flush();
             writer.close();
             
             if (foundTitle) {

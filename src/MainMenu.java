@@ -220,30 +220,25 @@ public class MainMenu {
         ArrayList<String> isFavorites = new ArrayList<>();
 
         try {
-            // Ensure correct file reading
             Scanner scan = new Scanner(new File(finalPath));
-
-            // Skip header lines if necessary
-            // scan.nextLine(); // Uncomment if there is a header to skip
 
             while (scan.hasNextLine()) {
                 String text = scan.nextLine();
                 String[] splits = text.split(";");
                 if (splits.length < 3) {
                     System.out.println("Skipping invalid line: " + text);
-                    continue;  // Skip lines that don't have the expected format
+                    continue;
                 }
                 data[0] = splits[0].trim();
                 data[1] = splits[1].trim();
                 data[2] = splits[2].trim();
 
-                // Normalize case for comparison
+
                 if (data[1].equalsIgnoreCase("true")) {
                     isFavorites.add(data[0]);
                 }
             }
 
-            // Display the favorites
             for (String s : isFavorites) {
                 ui.displayMessage(s);
             }
@@ -270,13 +265,10 @@ public class MainMenu {
 */
     public ArrayList<String> favoriteCSV(ArrayList<String> fav) {
         ArrayList<String> movieTitle = new ArrayList<>();
-        // Iterate over the list of favorite titles
         int counter = 0;
         for (String favoriteTitle : fav) {
             counter++;
-            // Loop through the media list to find the corresponding media by title
             for (Media media : mediaList) {
-                // Check if the media's title matches the favorite title
                 if (media.getTitle().equalsIgnoreCase(favoriteTitle)) {
                     ui.displayMessage( counter + ". " + media.getTitle() + ";" + media.getGenre() + ";" + media.getYear());
                     movieTitle.add(media.getTitle() + ";" + media.getGenre() + ";" + media.getYear());
@@ -288,13 +280,10 @@ public class MainMenu {
 
     public ArrayList<String> watchedCSV(ArrayList<String> fav) {
         ArrayList<String> movieTitle = new ArrayList<>();
-        // Iterate over the list of favorite titles
         int counter = -1;
         for (String favoriteTitle : fav) {
             counter++;
-            // Loop through the media list to find the corresponding media by title
             for (Media media : mediaList) {
-                // Check if the media's title matches the favorite title
                 if (media.getTitle().equalsIgnoreCase(favoriteTitle)) {
                     ui.displayMessage( counter + ". " + media.getTitle() + ";" + media.getGenre() + ";" + media.getYear());
                     movieTitle.add(media.getTitle() + ";" + media.getGenre() + ";" + media.getYear());

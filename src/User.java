@@ -28,7 +28,8 @@ public class User {
             FileWriter writer = new FileWriter(finalPath);
             writer.write("username " + "password " + "age " + "\n");
             writer.write(username + ";" + password + ";" + age+"\n");
-            writer.write("Title " + "isFavourite " + "hasWatched " + "\n");
+            writer.write("Title " + "isFavourite " + "hasWatched ");
+            writer.flush();
             writer.close();
         } catch (IOException e) {
             System.err.println("problem: " + e.getMessage());
