@@ -12,7 +12,7 @@ public class MainMenu {
     public static TextUI ui = new TextUI();
     private ArrayList<Media> mediaList = new ArrayList<>();
     static FileIO io = new FileIO();
-
+    private ArrayList <String> options;
     public MainMenu() {
         mediaList.clear();
         io.allMovies();
@@ -72,6 +72,7 @@ public class MainMenu {
     }
 
     public void promptChoice() {
+        MainMenu menu = new MainMenu();
         ui.displayMessage("1. Search");
         ui.displayMessage("2. Recommended");
         ui.displayMessage("3. Watch Later");
@@ -84,10 +85,10 @@ public class MainMenu {
                 String genre = ui.promptText("Search for genre of media ");
                 String year = ui.promptText("Search for year");
 
-                MainMenu menu = new MainMenu();
 
-                ArrayList <String> options = menu.search(title, genre, year);
-                System.out.println(menu.handleChoices(options));
+
+                 this.options = menu.search(title, genre, year);
+
                 break;
             case 2:
                 break;
@@ -102,6 +103,7 @@ public class MainMenu {
                 ui.displayMessage("Your input was incorrect, please type a number between 1 and 5");
                 promptChoice();
         }
+        System.out.println(menu.handleChoices(options));
 
 
     }
