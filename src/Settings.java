@@ -1,6 +1,5 @@
 import util.TextUI;
 
-
 public class Settings {
     static TextUI ui = new TextUI();
 

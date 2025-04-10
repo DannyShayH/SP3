@@ -27,7 +27,7 @@ public class FileIO {
             Scanner scan = new Scanner(file);
             scan.nextLine();//skip header;
             while (scan.hasNextLine()) {
-                String line = scan.nextLine();   //  "tess, 0"
+                String line = scan.nextLine();
                 data.add(line);
             }
         } catch (FileNotFoundException e) {
@@ -39,15 +39,15 @@ public class FileIO {
         String[] data = new String[length];
         File file = new File(path);
         try {
-            //new scanner created
+
             Scanner scan = new Scanner(file);
             scan.nextLine();//skip header;
 
             int i = 0;  //counter
             while (scan.hasNextLine()) {
-                String line = scan.nextLine();  //String line bliver instansieret som det scaneren har læst
-                data[i] = line;                    //information tilføjes til et array
-                i++;                             //counter går op
+                String line = scan.nextLine();
+                data[i] = line;
+                i++;
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
@@ -58,7 +58,7 @@ public class FileIO {
         String[] data = new String[length];
         File file = new File(path);
         try {
-            //new scanner created
+
             Scanner scan = new Scanner(file);
             scan.nextLine();//skip header;
 

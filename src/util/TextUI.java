@@ -8,9 +8,9 @@ public class TextUI {
     Scanner sc = new Scanner(System.in);
     public ArrayList<String> promptChoice( ArrayList<String> options, int limit, String msg){
         displayList(options, "");
-        ArrayList<String> choices = new ArrayList<>();  //Lave en beholder til at gemme brugerens valg
+        ArrayList<String> choices = new ArrayList<>();
 
-        while(choices.size() < limit){             //tjekke om brugeren skal vælge flere drinks
+        while(choices.size() < limit){
             int choice = promptNumeric(msg);
             choices.add(options.get(choice-1));
         }

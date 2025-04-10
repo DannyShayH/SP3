@@ -12,12 +12,12 @@ public class Chill {
     TextUI ui = new TextUI();
     FileIO io = new FileIO();
 
-    //Bliver kaldt fra Main
+    //Is called from Main
     public void startSequence(String msg){
         existingUser = io.readData("data/allUsers/allUsers.csv");
-        //welcome to site msg Måske hej velkommen til Chill
+        //Welcome message to Chill
         ui.displayMessage(msg);
-        //Giver to valgmuligheder, hvor brugeren kan svare med en int.
+        //Gives the user 2 choices, input with numbers (promptNumeric)
         int input = ui.promptNumeric("1: register as new user." + "\n" + "2: Login as existing user.");
         //
         if (input == 1){
@@ -41,7 +41,7 @@ public class Chill {
             User user = new User(username, password, age);
             user.createUser();
             user.allUsernames();
-            //Lav en konstruktor der laver en ny CSV-fil som er ";" seperaret.
+            //Create a constructor that creates a new CSV-file that is ";" seperated.
             login();
         } else {
             ui.displayMessage("Username is already taken..." + "\n" + "Try again");

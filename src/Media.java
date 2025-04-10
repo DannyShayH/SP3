@@ -9,7 +9,6 @@ public abstract class Media {
     String year;
     String genre;
     String rating;
-    //user info
 
 
     public Media(String title, String rating, String year, String genre){
@@ -54,5 +53,3 @@ public abstract class Media {
                 '}';
     }
 }
-
-

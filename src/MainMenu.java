@@ -20,7 +20,7 @@ public class MainMenu {
     private ArrayList<String> finalList = new ArrayList<>();
 
     public MainMenu() {
-        // Get current username and check if it's valid
+        // Get current username
         this.currentUser = User.getUsername();
 
         mediaList.clear();
@@ -303,18 +303,15 @@ public class MainMenu {
         ArrayList<String> watched = new ArrayList<>();
 
         try {
-            // Ensure correct file reading
             Scanner scan = new Scanner(new File(finalPath));
-
-            // Skip header lines if necessary
-            // scan.nextLine(); // Uncomment if there is a header to skip
+            // scan.nextLine();
 
             while (scan.hasNextLine()) {
                 String text = scan.nextLine();
                 String[] splits = text.split(";");
                 if (splits.length < 3) {
                     System.out.println("Skipping invalid line: " + text);
-                    continue;  // Skip lines that don't have the expected format
+                    continue;
                 }
 
                 data[0] = splits[0].trim();
@@ -324,7 +321,7 @@ public class MainMenu {
                     watched.add(data[0]);
                 }
 
-            // Display the favorites
+            // Display favorites
             for (String s : watched) {
                 ui.displayMessage(s);
             }
@@ -337,10 +334,3 @@ public class MainMenu {
         return watched;
     }
             }
-
-
-
-
-
-
-

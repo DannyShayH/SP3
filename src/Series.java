@@ -16,6 +16,4 @@ int season;
         this.season = season;
 
     }
-
-
 }
