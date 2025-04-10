@@ -3,11 +3,13 @@ import java.io.IOException;
 import java.util.Scanner;
 import util.TextUI;
 import java.io.File;
+import java.util.Arrays;
 
 public class Movies extends Media{
     TextUI ui = new TextUI();
     Scanner scan = new Scanner(System.in);
     private String currentUser;
+    private String FinalPath = "data/userData/" + currentUser + ".csv";
     
     public Movies(String title, String year, String genre, String rating) {
         super(title, rating, year, genre);
@@ -24,7 +26,7 @@ public class Movies extends Media{
         int input = ui.promptNumeric("What action would you like to take?");
         if(input == 1){
          ui.displayMessage("You are now watching " + title);
-         hasWatched();
+         playMedia(title);
         }else if(input == 2) {
             addToFavorites();
         }else if(input ==3){
@@ -74,18 +76,28 @@ public class Movies extends Media{
             System.err.println("Problem updating watched list: " + e.getMessage());
         }
     }
-    
+
     @Override
     public void playMedia(String title){
         String username = User.getUsername();
-        if (username == null || username.isEmpty()) {
-            ui.displayMessage("Error: No user is currently logged in");
-            return;
-        }
-        
+
         ui.displayMessage(username + " is now watching: " + title);
         hasWatched();
+        returnExit();
     }
+    public void returnExit(){
+        int input = ui.promptNumeric("1: Go to main menu" + "\n" + "2: End program");
+        if(input == 1){
+            MainMenu menu = new MainMenu();
+            menu.promptChoice();
+        }else if(input ==2){
+            ui.displayMessage("Goodbye");
+        }else{
+            ui.displayMessage("Please enter a valid number");
+            returnExit();
+        }
+    }
+
 
     @Override
     public void addToFavorites(){

@@ -1,8 +1,6 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+
 import util.TextUI;
 import util.FileIO;
 
@@ -16,6 +14,7 @@ public class MainMenu {
     private ArrayList <String> options;
     private String currentUser;
     private Random randomNum;
+    private String FinalPath = "data/userData/" + currentUser + ".csv";
 
     public MainMenu() {
         // Get current username and check if it's valid
@@ -74,7 +73,7 @@ public class MainMenu {
         }
     }
 
-    public Movies converToMovie(String media){
+    public Movies convertToMovie(String media){
         String[] movie = media.split(";");
         String title = movie[0];
         String genre = movie[1];
@@ -94,7 +93,7 @@ public class MainMenu {
         MainMenu menu = new MainMenu();
         ui.displayMessage("1. Search");
         ui.displayMessage("2. Recommended");
-        ui.displayMessage("3. Watch Later");
+        ui.displayMessage("3. Favorites");
         ui.displayMessage("4. Continue watching");
         ui.displayMessage("5. Go to settings");
         int choice = ui.promptNumeric("Choose an option to continue (Numeric)");
@@ -109,7 +108,7 @@ public class MainMenu {
                 if (options != null && !options.isEmpty()) {
                     String moviePicked = menu.handleChoices(options);
                     if (moviePicked != null) {
-                        Media movie = converToMovie(moviePicked);
+                        Media movie = convertToMovie(moviePicked);
                         movie.action();
                     }
                 } else {
@@ -120,11 +119,13 @@ public class MainMenu {
                 break;
             case 2:
 
-                recommneded();
+                ArrayList<String> recommendations = recommneded();
+                String moviePicked = handleChoices(recommendations);
+                Movies movie = convertToMovie(moviePicked);
+                movie.action();
                 break;
             case 3:
-                ui.displayMessage("Watch Later feature not implemented yet");
-                promptChoice();
+                findFavorites();
                 break;
             case 4:
                 ui.displayMessage("Continue watching feature not implemented yet");
@@ -181,7 +182,7 @@ public class MainMenu {
         ui.displayMessage("You chose " + moviePicked);
         return moviePicked;
     }
-    public void recommneded(){
+    public ArrayList<String> recommneded(){
         HashSet<Integer> recommended = new HashSet<>();
 
         while(recommended.size() < 5){
@@ -190,10 +191,31 @@ public class MainMenu {
 
 
         }
+        ArrayList<String> movieDisplay = new ArrayList<>();
+        int counter = 0;
         for(int n : recommended){
-            System.out.println(mediaList.get(n).getTitle()+ ", " + (mediaList.get(n).getGenre() + ", " + (mediaList.get(n).getYear())));
+            counter++;
+            ui.displayMessage(counter + ": " +  mediaList.get(n).getTitle()+ ", " + (mediaList.get(n).getGenre() + ", " + (mediaList.get(n).getYear())));
+            movieDisplay.add( mediaList.get(n).getTitle()+ ";" + (mediaList.get(n).getGenre()+ ";" + (mediaList.get(n).getYear())));
+        }
+        return movieDisplay;
+    }
+    public void findFavorites(){
+        String path = "data/userData/";
+        String username = currentUser;
 
+
+        String finalPath = path + username + ".csv";
+        Scanner scan = new Scanner(finalPath);
+
+
+        String test = scan.nextLine();
+            ui.displayMessage(test);
+        String test1 = scan.nextLine();
+        ui.displayMessage(test1);
+        String test2 = scan.nextLine();
+        ui.displayMessage(test2);
         }
     }
-}
+
 
