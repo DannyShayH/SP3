@@ -18,7 +18,24 @@ public class Movies extends Media{
         super(title, rating, year, genre);
         this.currentUser = currentUser;
     }
-
+    @Override
+    public void action(){
+        ui.displayMessage("1: watch movie"+ "\n" + "2: add to favorite" + "\n" + "3: Return to main menu");
+        int input = ui.promptNumeric("What action would you like to take?");
+        if(input == 1){
+         ui.displayMessage("You are now watching " + title);
+         hasWatched();
+        }else if(input == 2) {
+            addToFavorites();
+        }else if(input ==3){
+            ui.displayMessage("You have returned to main menu");
+            MainMenu menu = new MainMenu();
+            menu.promptChoice();
+        }else{
+            ui.displayMessage("Invalid input, try again");
+            action();
+        }
+    }
     @Override
     public void hasWatched() {
         try {

@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import util.TextUI;
 import util.FileIO;
@@ -14,6 +15,7 @@ public class MainMenu {
     static FileIO io = new FileIO();
     private ArrayList <String> options;
     private String currentUser;
+    private Random randomNum;
 
     public MainMenu() {
         // Get current username and check if it's valid
@@ -108,16 +110,17 @@ public class MainMenu {
                     String moviePicked = menu.handleChoices(options);
                     if (moviePicked != null) {
                         Media movie = converToMovie(moviePicked);
-                        movie.hasWatched();
+                        movie.action();
                     }
                 } else {
                     ui.displayMessage("No media found matching your search criteria.");
                     promptChoice();
                 }
+
                 break;
             case 2:
-                ui.displayMessage("Recommended feature not implemented yet");
-                promptChoice();
+
+                recommneded();
                 break;
             case 3:
                 ui.displayMessage("Watch Later feature not implemented yet");
@@ -175,6 +178,22 @@ public class MainMenu {
         }
         
         String moviePicked = options.get(input-1);
+        ui.displayMessage("You chose " + moviePicked);
         return moviePicked;
     }
+    public void recommneded(){
+        HashSet<Integer> recommended = new HashSet<>();
+
+        while(recommended.size() < 5){
+            int random = (int) (Math.random() * mediaList.size());
+            recommended.add(random);
+
+
+        }
+        for(int n : recommended){
+            System.out.println(mediaList.get(n).getTitle()+ ", " + (mediaList.get(n).getGenre() + ", " + (mediaList.get(n).getYear())));
+
+        }
+    }
 }
+

@@ -18,7 +18,9 @@ public abstract class Media {
         this.rating = rating;
         this.year = year;
         }
+        public void action(){
 
+        }
         protected void playMedia(String title){
 
         }
